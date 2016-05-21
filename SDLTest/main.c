@@ -5,12 +5,11 @@
 
 int main (int argc, char ** argv) {
 	SDL_Init (SDL_INIT_VIDEO);
-	// SDL_Surface* screen = NULL;
+
 	Uint32 var = 0;
-	// screen = SDL_SetVideoMode (640,480, 32, SDL_HWSURFACE);
+
 	char * windowName = "Window";
-	SDL_Window* window = SDL_CreateWindow(windowName, 0, 0, 100, 100, 0);
-	// SDL_Surface* myVideoSurface = SDL_SetVideoMode(640, 480, 16, var);
+	SDL_Window* window = SDL_CreateWindow(windowName, 0, 0, 640, 480, 0);
 
 	while (1) {
 		SDL_Event event;
