@@ -22,6 +22,7 @@ void SetPixelColor(int x, int y, Uint32 pixel) {
   *target_pixel = pixel;
 }
 void DrawPixelsFromPointToPoint (int x, int y, int tX, int tY) {
+
 	while (x != tX || y != tY) {
 		SetPixelColor (x, y, WHITE_COLOR);
 		int xDelta = tX - x,
@@ -72,9 +73,9 @@ int main (int argc, char ** argv) {
 		SDL_DestroyTexture(texture);
 
 		int tX, tY;
-		SDL_GetMouseState (&tX, &tY);
 
-		DrawPixelsFromPointToPoint (x, y, tX, tY);
+		if (SDL_GetMouseState (&tX, &tY) & SDL_BUTTON(SDL_BUTTON_LEFT))
+			DrawPixelsFromPointToPoint (x, y, tX, tY);
 		x = tX;
 		y = tY;
 
