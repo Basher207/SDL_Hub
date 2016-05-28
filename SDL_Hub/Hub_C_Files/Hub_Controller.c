@@ -17,6 +17,8 @@ void Hub_SetSize (int w, int h) {
 	}
 }
 void Hub_Crate_SDL_Window (int (*updateFunction)(), char * windowName) {
+	if (Hub_ScreenSurface != NULL)
+		return;
 	SDL_Init (SDL_INIT_VIDEO);
 	SDL_Window* window = SDL_CreateWindow(windowName, 0, 0, Hub_width, Hub_height, 0);
 	SDL_Renderer* renderer = SDL_CreateRenderer (window,-1, 0);
