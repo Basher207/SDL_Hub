@@ -2,11 +2,14 @@
 #include <SDL2/SDL_render.h>
 
 #define WHITE_COLOR 0x00FFFFFF
-
+//The surface that will be copied to the screen every frame. 
 SDL_Surface* Hub_ScreenSurface;
-
+//The fire pixel in the surface, this is accessible from the header.
 Uint32* Hub_firstSurfacePixel = NULL;
-int Hub_width = 500, Hub_height = 500;
+int Hub_width = 500, Hub_height = 500; //Window dimensions.
+
+//If the window is not already intialised (Hub_ScreenSurface is null)
+//Set the window dimensions
 
 void Hub_SetSize (int w, int h) {
 	if (Hub_ScreenSurface == NULL) {
@@ -16,7 +19,7 @@ void Hub_SetSize (int w, int h) {
 		printf ("Window already created");
 	}
 }
-void Hub_Crate_SDL_Window (int (*updateFunction)(), char * windowName) {
+void Hub_Crate_SDL_Window (void (*updateFunction)(), char * windowName) {
 	if (Hub_ScreenSurface != NULL)
 		return;
 	SDL_Init (SDL_INIT_VIDEO);
@@ -54,15 +57,12 @@ void Hub_Crate_SDL_Window (int (*updateFunction)(), char * windowName) {
 				}
 			}
 		}
-		// SDL_RenderClear(renderer);
 		SDL_DestroyTexture(texture);
-		if (updateFunction () == Hub_Quit)
-			goto end;
+		updateFunction ();
 		texture = SDL_CreateTextureFromSurface (renderer, Hub_ScreenSurface);
 
 		SDL_RenderCopy (renderer, texture, NULL, &texture_rect);
 		SDL_RenderPresent(renderer);
-		// SDL_Delay (16);
 	}
 	end:
 	printf ("Quit \n");	SDL_Quit ();
