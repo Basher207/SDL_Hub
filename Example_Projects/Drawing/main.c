@@ -7,7 +7,6 @@ int main () {
 	Hub_SetSize (900,500);
 
 	Hub_Crate_SDL_Window (Update, "Window");
-	printf (sizeof ('a'));
 }
 void Update () {
 	static int pX, pY;
