@@ -12,12 +12,23 @@ int Hub_Absolute (int n) {
 		return -n;
 	return n;
 }
+Hub_ColorType* Hub_GetPixel (int x, int y) {
+  if (x > Hub_width || x < 0 || y > Hub_height || y < 0)
+  	return 0;
+  Uint32* target_pixel = Hub_firstSurfacePixel + x + y * Hub_width;
+  return (Hub_ColorType*)target_pixel;
+}
+void Hub_SetColor (Hub_ColorType color) {
+	Hub_Color = *((Uint32*)&color);
+}
+
 void Hub_SetPixelColor(int x, int y) {
   if (x > Hub_width || x < 0 || y > Hub_height || y < 0)
   	return;
   Uint32* target_pixel = Hub_firstSurfacePixel + x + y * Hub_width;
   *target_pixel = Hub_Color;
 }
+
 void Hub_DrawPixelsFromPointToPoint (int x, int y, int tX, int tY) {
 	while (x != tX || y != tY) {
 		Hub_SetPixelColor (x, y);

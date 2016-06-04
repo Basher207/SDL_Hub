@@ -15,7 +15,12 @@ Project_Header_Search_Directories := $(foreach directory, $(Project_Directories)
 Header_Directory 		:= Headers
 Library_bin_Directory 	:= bin/
 
+this:
+	make SDL_Handler
+	./$(Project_output)
+
 all:
+	make SDL_Hub_Directory
 	make SDL_Handler
 	./$(Project_output)
 

@@ -1,17 +1,6 @@
 #include <Module.h>
 #include <Hub_Drawer.h>
 
-typedef struct ModuleLink {
-	struct ModuleLink* nextModule;
-	Module* thisModule;
-} ModuleLink;
-
-
-//Module link start
-ModuleLink* modules;
-
-int numberOfModules;
-
 Module* NewMoudle (int x, int y, int width, int height) {
 	Module* module;
 	module = (Module*) malloc (sizeof (Module));
@@ -23,23 +12,27 @@ Module* NewMoudle (int x, int y, int width, int height) {
 	return module;
 }
 
-void AddModule (Module* module) {
-	ModuleLink* lastModule = modules;
+Module* AddModuleToLink (ModuleLink* modulelink) {
+
+	ModuleLink* lastModule = modulelink;
 	while (lastModule->nextModule != 0) {
 		lastModule = lastModule->nextModule;
 	}
-	ModuleLink newLink;
-	newLink.thisModule = module;
-	lastModule->nextModule = &newLink;
+
+	ModuleLink* newLink = calloc (1, sizeof (ModuleLink));
+	lastModule->nextModule = newLink;
+
+	return &newLink->thisModule;
 }
 void RenderModule ();
-void RenderModules () {
+void RenderModules (ModuleLink* modules) {
 	ModuleLink* moduleLink = modules;
 	while (moduleLink != 0) {
-		RenderModule (moduleLink->thisModule);
+		RenderModule (&moduleLink->thisModule);
 		moduleLink = moduleLink->nextModule;
 	}
 }
 void RenderModule (Module* module) {
+	Hub_Color = module->color;
 	Hub_DrawRect (module->pos, module->size);
 }

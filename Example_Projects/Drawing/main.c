@@ -1,6 +1,7 @@
 #include <Hub_Controller.h>
 #include <Hub_Drawer.h>
 #include <stdio.h>
+#include <math.h>
 void Update ();
 
 int main () {

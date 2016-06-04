@@ -4,5 +4,5 @@
 typedef struct Hub_Vector {
 	float x, y;
 } Hub_Vector;
-Hub_Vector Hub_Add_Vector (Hub_Vector first, Hub_Vector second);
+Hub_Vector Hub_AddVector (Hub_Vector first, Hub_Vector second);
 #endif
