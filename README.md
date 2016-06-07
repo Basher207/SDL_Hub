@@ -14,3 +14,14 @@ Follow instructions in the download link and put it in your framwork folder:
 or
 ~/Library/Frameworks/
 
+
+Example projects
+
+#Drawing:
+A very simple 20 line drawing script.
+
+#Moving_Boxes:
+A simple dragging boxes around using the alpha byte of to detect button presses.
+
+#Vector_moving_boxes
+Using rects for box click detection

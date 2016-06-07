@@ -42,23 +42,23 @@ void Hub_DrawPixelsFromPointToPoint (int x, int y, int tX, int tY) {
 	}
 	Hub_SetPixelColor (tX, tY);
 }
-void Hub_DrawRect (Hub_Vector topLeft, Hub_Vector rectSize) {
-	int distanceFromRight = Hub_width - topLeft.x;
-	int distanceFromBottom = Hub_height - topLeft.y;
+void Hub_DrawRect (SDL_Rect rect) {
+	int distanceFromRight = Hub_width - rect.x;
+	int distanceFromBottom = Hub_height - rect.y;
 
-	if (distanceFromRight < rectSize.x) {
-		rectSize.x = distanceFromRight;
+	if (distanceFromRight < rect.w) {
+		rect.w = distanceFromRight;
 	}
-	if (distanceFromBottom < rectSize.y) {
-		rectSize.y = distanceFromBottom;
+	if (distanceFromBottom < rect.h) {
+		rect.h = distanceFromBottom;
 	}
 	Uint32* leftPixel = Hub_firstSurfacePixel;
 
-	leftPixel += (int)topLeft.x + (int)topLeft.y * Hub_width;
+	leftPixel += (int)rect.x + (int)rect.y * Hub_width;
 
-	for (int y = 0; y < rectSize.y; y++) {
+	for (int y = 0; y < rect.h; y++) {
 		Uint32* widthDrawer = leftPixel;
-		for (int x = 0; x < rectSize.x; x++) {
+		for (int x = 0; x < rect.w; x++) {
 			*widthDrawer = Hub_Color;
 			widthDrawer++;
 		}
@@ -66,11 +66,6 @@ void Hub_DrawRect (Hub_Vector topLeft, Hub_Vector rectSize) {
 	}
 }
 void Hub_ClearBackground () {
-	Hub_Vector topLeft;
-	Hub_Vector size;
-
-	size.x = Hub_width;
-	size.y = Hub_height;
-
-	Hub_DrawRect (topLeft, size);
+	SDL_Rect screenRect = { 0, 0, Hub_width, Hub_height};
+	Hub_DrawRect (screenRect);
 }

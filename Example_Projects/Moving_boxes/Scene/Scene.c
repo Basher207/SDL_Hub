@@ -1,5 +1,6 @@
 #include <Scene.h>
 #include <stdio.h>
+
 Scene instance;
 int moduleIndex;
 

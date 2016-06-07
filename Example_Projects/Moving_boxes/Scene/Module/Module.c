@@ -34,5 +34,6 @@ void RenderModules (ModuleLink* modules) {
 }
 void RenderModule (Module* module) {
 	Hub_Color = module->color;
-	Hub_DrawRect (module->pos, module->size);
+	SDL_Rect rect = {module->pos.x, module->pos.y, module->size.x, module->size.y};
+	Hub_DrawRect (rect);
 }

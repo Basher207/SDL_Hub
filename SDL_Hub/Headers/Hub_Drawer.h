@@ -16,6 +16,6 @@ void Hub_SetColor (Hub_ColorType color);
 Hub_ColorType* Hub_GetPixel (int x, int y);
 void Hub_SetPixelColor				(int x, int y);
 void Hub_DrawPixelsFromPointToPoint (int x, int y, int tX, int tY);
-void Hub_DrawRect (Hub_Vector topLeft, Hub_Vector rectSize);
+void Hub_DrawRect (SDL_Rect rect);
 void Hub_ClearBackground ();
 #endif
